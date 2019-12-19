@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">News</string>
+    <string name="retry">Retry</string>
+    <string name="title_news">News</string>
+    <string name="title_headline">Headline</string>
+    <string name="no_internet">No internet</string>
+    <string name="btn_text_register">Register</string>
+    <string name="btn_text_logout">Logout</string>
+    <string name="text_powered_by">Powered by Shanindu Rajapaksha</string>
+
+
+    <!--    ProfileFragment-->
+    <string name="text_username">Username</string>
+    <string name="text_fname">First Name</string>
+    <string name="text_lname">Last Name</string>
+
+    <!--    CustomFragment-->
+    <string name="btn_text_bitcoin">Bitcoin</string>
+    <string name="btn_text_apple">Apple</string>
+    <string name="btn_text_earthquake">Earthquake</string>
+    <string name="btn_text_animal">Animal</string>
 </resources>
