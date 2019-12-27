@@ -1,15 +1,26 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
+
+ext.kotlin_version = '1.3.50'
+ext.picasso_version = '2.71828'
+ext.circle_view_image_version = '2.2.0'
+ext.lottie_version = '2.7.0'
+ext.volley_version = '1.1.1'
+ext.android_support_version = '26.1.0'
+ext.gson_version = '2.6.2'
+ext.material_ripple_version = '1.0.2'
+ext.card_view_version = '1.0.0'
+ext.constraint_version = '1.0.2'
+ext.tablayout_version = '1.1.0-alpha04'
+
 
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.shanindu.news"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 29
         versionCode 1
         versionName "0.0.1"
@@ -34,5 +45,31 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
 
     //lottie
-    implementation 'com.airbnb.android:lottie:2.5.0'
+    implementation "com.airbnb.android:lottie:$lottie_version"
+
+    //Picasso
+    implementation "com.squareup.picasso:picasso:$picasso_version"
+
+    //circle image view
+    implementation "de.hdodenhof:circleimageview:$circle_view_image_version"
+
+    // volley http library
+    implementation "com.android.volley:volley:$volley_version"
+    implementation "com.google.code.gson:gson:$gson_version"
+
+    //RecycleView
+    implementation "com.android.support:recyclerview-v7:$android_support_version"
+
+    //MaterialRipple
+    implementation "com.balysv:material-ripple:$material_ripple_version"
+
+    //CardView
+    implementation "androidx.cardview:cardview:$card_view_version"
+
+    //tabs layout
+    implementation "com.android.support:design:$android_support_version"
+    implementation "com.android.support:support-v4:$android_support_version"
+
+    implementation "com.google.android.material:material:$tablayout_version"
+
 }

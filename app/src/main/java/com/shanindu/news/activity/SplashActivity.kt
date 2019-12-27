@@ -1,12 +1,15 @@
-package com.shanindu.news
+package com.shanindu.news.activity
 
+import android.content.Intent
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.widget.TextView
+import com.shanindu.news.R
 
 class SplashActivity : AppCompatActivity() {
+    private val SPLASH_TIME_OUT: Long = 2500
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
