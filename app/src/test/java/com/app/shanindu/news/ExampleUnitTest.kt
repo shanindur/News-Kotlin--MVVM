@@ -1,4 +1,4 @@
-package com.shanindu.news
+package me.eijaz.tabstutorial
 
 import org.junit.Test
 

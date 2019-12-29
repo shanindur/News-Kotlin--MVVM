@@ -1,14 +1,17 @@
-package com.shanindu.news.fragment
+package com.app.shanindu.news.fragment
 
 
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.fragment.app.Fragment
-import com.shanindu.news.R
+import com.app.shanindu.news.R
+import com.app.shanindu.news.model.User
+import com.app.shanindu.news.model.UserDao
+import kotlinx.android.synthetic.*
 
 
 /**
@@ -17,7 +20,7 @@ import com.shanindu.news.R
 class ProfileFragment : Fragment() {
     private val TAG = "ProfileFragment"
 
-//    private val dao = UserDao();
+    private val dao = UserDao();
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,8 +29,8 @@ class ProfileFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         val view: View = inflater.inflate(R.layout.fragment_profile, container, false)
 
@@ -61,14 +64,7 @@ class ProfileFragment : Fragment() {
             } else {
                 btnRegister.setText("REGISTERING...")
                 try {
-//                    dao.add(
-//                        User(
-//                            1,
-//                            edtFname.text.toString().trim(),
-//                            edtLname.text.toString().trim(),
-//                            edtUsername.text.toString().trim()
-//                        )
-//                    )
+                    dao.add(User(1, edtFname.text.toString().trim(), edtLname.text.toString().trim(), edtUsername.text.toString().trim()))
                     Toast.makeText(context, "Successfully registered!", Toast.LENGTH_LONG).show()
 
                     edtFname.setText("")
@@ -81,7 +77,7 @@ class ProfileFragment : Fragment() {
                     layoutInfo.visibility = View.VISIBLE;
 
 
-//                    txtName.setText("Hi, " + dao.getUser().firstName + " " + dao.getUser().lastName)
+                    txtName.setText("Hi, " + dao.getUser().firstName + " " + dao.getUser().lastName)
 
 
                 } catch (ex: Exception) {
@@ -100,7 +96,7 @@ class ProfileFragment : Fragment() {
 
         btnLogout.setOnClickListener {
             try {
-//                dao.removeAll()
+                dao.removeAll()
                 layoutRegister.visibility = View.VISIBLE;
                 layoutInfo.visibility = View.GONE;
             } catch (ex: Exception) {

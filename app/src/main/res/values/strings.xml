@@ -1,12 +1,11 @@
 <resources>
-    <string name="app_name">News</string>
+    <string name="app_name">NEWS</string>
     <string name="retry">Retry</string>
     <string name="title_news">News</string>
     <string name="title_headline">Headline</string>
     <string name="no_internet">No internet</string>
     <string name="btn_text_register">Register</string>
     <string name="btn_text_logout">Logout</string>
-    <string name="text_powered_by">Powered by Shanindu Rajapaksha</string>
 
 
     <!--    ProfileFragment-->

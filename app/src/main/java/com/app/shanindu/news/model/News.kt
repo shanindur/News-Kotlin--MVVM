@@ -1,4 +1,4 @@
-package com.shanindu.news.model
+package com.app.shanindu.news.model
 
 import java.io.Serializable
 

@@ -1,20 +1,20 @@
-package com.shanindu.news.adapter
+package com.app.shanindu.news.adapter
 
 import android.content.Context
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView
+import com.app.shanindu.news.R
+import com.app.shanindu.news.model.News
 import com.balysv.materialripple.MaterialRippleLayout
-import com.shanindu.news.R
-import com.shanindu.news.model.News
 import com.squareup.picasso.Picasso
 
 
 class NewsAdapter(val context: Context?, val newsList: List<News>) :
-    RecyclerView.Adapter<NewsAdapter.MyViewHolder>() {
+        RecyclerView.Adapter<NewsAdapter.MyViewHolder>() {
 
     private var mOnItemClickListener: OnItemClickListener? = null
 
@@ -31,7 +31,7 @@ class NewsAdapter(val context: Context?, val newsList: List<News>) :
     }
 
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        //        var tvId: TextView
+//        var tvId: TextView
         var txtHeadline: TextView
         var imgNews: ImageView
         var layout: MaterialRippleLayout
@@ -47,7 +47,7 @@ class NewsAdapter(val context: Context?, val newsList: List<News>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.article_item, parent, false)
+                .inflate(R.layout.list_item, parent, false)
 
         return MyViewHolder(itemView)
     }
@@ -64,9 +64,9 @@ class NewsAdapter(val context: Context?, val newsList: List<News>) :
         holder?.txtHeadline?.setText(news.title)
 
         Picasso
-            .get() // give it the context
-            .load(news.urlToImage) // load the image
-            .into(holder?.imgNews)
+                .get() // give it the context
+                .load(news.urlToImage) // load the image
+                .into(holder?.imgNews)
 
 
     }

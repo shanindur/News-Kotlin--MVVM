@@ -1,4 +1,4 @@
-package com.shanindu.news.util
+package com.app.shanindu.news.helper
 
 import android.content.Context
 import android.net.ConnectivityManager

@@ -1,8 +1,11 @@
-package com.shanindu.news.fragment
+package com.app.shanindu.news.fragment
 
 
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -10,22 +13,19 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.Toast
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.VolleyError
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.app.shanindu.news.R
+import com.app.shanindu.news.activity.DetailActivity
+import com.app.shanindu.news.adapter.NewsAdapter
+import com.app.shanindu.news.helper.InternetObserver
+import com.app.shanindu.news.model.News
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.shanindu.news.R
-import com.shanindu.news.activity.DetailActivity
-import com.shanindu.news.adapter.NewsAdapter
-import com.shanindu.news.model.News
-import com.shanindu.news.util.InternetObserver
 import org.json.JSONException
 import org.json.JSONObject
 import java.util.*
@@ -34,8 +34,7 @@ import java.util.*
 class HomeFragment : Fragment() {
     private val TAG = "HomeFragment"
 
-    private val HEADLINES_URL =
-        "https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=7e34fe9b5e32418ebc3f42370f1458f3"
+    private val HEADLINES_URL = "https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=7e34fe9b5e32418ebc3f42370f1458f3"
 
     private var recyclerView: RecyclerView? = null
     private var layoutManager: RecyclerView.LayoutManager? = null
@@ -54,8 +53,8 @@ class HomeFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         val view: View = inflater.inflate(R.layout.fragment_home, container, false)
 
@@ -122,10 +121,7 @@ class HomeFragment : Fragment() {
 // Instantiate the RequestQueue.
             val queue = Volley.newRequestQueue(context)
             val request = object :
-                StringRequest(
-                    Request.Method.GET,
-                    HEADLINES_URL,
-                    object : Response.Listener<String> {
+                    StringRequest(Request.Method.GET, HEADLINES_URL, object : Response.Listener<String> {
                         override fun onResponse(response: String) {
                             Log.d("response", "" + response)
                             if (response == "") {
@@ -137,10 +133,10 @@ class HomeFragment : Fragment() {
                                 val news: List<News>
 
                                 news = Gson().fromJson<List<News>>(
-                                    jObj.getJSONArray("articles").toString(),
-                                    object : TypeToken<List<News>>() {
+                                        jObj.getJSONArray("articles").toString(),
+                                        object : TypeToken<List<News>>() {
 
-                                    }.type
+                                        }.type
                                 )
 
                                 // adding users to user list
@@ -161,8 +157,7 @@ class HomeFragment : Fragment() {
 
 
                         }
-                    },
-                    object : Response.ErrorListener {
+                    }, object : Response.ErrorListener {
                         override fun onErrorResponse(error: VolleyError) {
                             // error in getting json
                             Log.e(TAG, "Error: " + error.message)
@@ -174,11 +169,11 @@ class HomeFragment : Fragment() {
 
             }
             request.setRetryPolicy(
-                DefaultRetryPolicy(
-                    60000,
-                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
-                )
+                    DefaultRetryPolicy(
+                            60000,
+                            DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                            DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+                    )
             )
             queue.add(request)
 

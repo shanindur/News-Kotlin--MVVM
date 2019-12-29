@@ -1,9 +1,11 @@
-package com.shanindu.news.fragment
+package com.app.shanindu.news.fragment
 
 
 import android.content.Intent
 import android.os.Bundle
-
+import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -11,22 +13,19 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.Toast
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.VolleyError
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.app.shanindu.news.R
+import com.app.shanindu.news.activity.DetailActivity
+import com.app.shanindu.news.adapter.NewsAdapter
+import com.app.shanindu.news.helper.InternetObserver
+import com.app.shanindu.news.model.News
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.shanindu.news.R
-import com.shanindu.news.activity.DetailActivity
-import com.shanindu.news.adapter.NewsAdapter
-import com.shanindu.news.model.News
-import com.shanindu.news.util.InternetObserver
 import org.json.JSONException
 import org.json.JSONObject
 import java.util.ArrayList
@@ -60,8 +59,8 @@ class CustomFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         val view: View = inflater.inflate(R.layout.fragment_custom, container, false)
 
@@ -170,63 +169,63 @@ class CustomFragment : Fragment() {
 // Instantiate the RequestQueue.
             val queue = Volley.newRequestQueue(context)
             val request = object :
-                StringRequest(
-                    Request.Method.GET,
-                    BASE_URL + keyword + KEY,
-                    object : Response.Listener<String> {
-                        override fun onResponse(response: String) {
-                            Log.d("response", "" + response)
-                            if (response == "") {
-                                return
-                            }
-                            try {
+                    StringRequest(
+                            Request.Method.GET,
+                            BASE_URL + keyword + KEY,
+                            object : Response.Listener<String> {
+                                override fun onResponse(response: String) {
+                                    Log.d("response", "" + response)
+                                    if (response == "") {
+                                        return
+                                    }
+                                    try {
 
-                                val jObj = JSONObject(response)
-                                val news: List<News>
+                                        val jObj = JSONObject(response)
+                                        val news: List<News>
 
-                                news = Gson().fromJson<List<News>>(
-                                    jObj.getJSONArray("articles").toString(),
-                                    object : TypeToken<List<News>>() {
+                                        news = Gson().fromJson<List<News>>(
+                                                jObj.getJSONArray("articles").toString(),
+                                                object : TypeToken<List<News>>() {
 
-                                    }.type
-                                )
+                                                }.type
+                                        )
 
-                                // adding users to user list
-                                newsList.clear()
-                                newsList.addAll(news)
+                                        // adding users to user list
+                                        newsList.clear()
+                                        newsList.addAll(news)
 
-                                // refreshing recycler view
-                                mAdapter?.notifyDataSetChanged()
+                                        // refreshing recycler view
+                                        mAdapter?.notifyDataSetChanged()
 
-                                lyt_progress?.setVisibility(View.GONE)
-                                recyclerView?.setAlpha(1.0f)
-                                recyclerView?.setVisibility(View.VISIBLE)
-
-
-                            } catch (e: JSONException) {
-                                e.printStackTrace()
-                            }
+                                        lyt_progress?.setVisibility(View.GONE)
+                                        recyclerView?.setAlpha(1.0f)
+                                        recyclerView?.setVisibility(View.VISIBLE)
 
 
-                        }
-                    },
-                    object : Response.ErrorListener {
-                        override fun onErrorResponse(error: VolleyError) {
-                            // error in getting json
-                            Log.e(TAG, "Error: " + error.message)
+                                    } catch (e: JSONException) {
+                                        e.printStackTrace()
+                                    }
 
 
-                        }
-                    }) {
+                                }
+                            },
+                            object : Response.ErrorListener {
+                                override fun onErrorResponse(error: VolleyError) {
+                                    // error in getting json
+                                    Log.e(TAG, "Error: " + error.message)
+
+
+                                }
+                            }) {
 
 
             }
             request.setRetryPolicy(
-                DefaultRetryPolicy(
-                    60000,
-                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
-                )
+                    DefaultRetryPolicy(
+                            60000,
+                            DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                            DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+                    )
             )
             queue.add(request)
 

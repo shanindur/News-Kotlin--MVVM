@@ -1,14 +1,15 @@
-package com.shanindu.news.activity
+package com.app.shanindu.news.activity
 
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
-import com.shanindu.news.R
+import com.app.shanindu.news.R
 import com.squareup.picasso.Picasso
 
 class DetailActivity : AppCompatActivity() {
