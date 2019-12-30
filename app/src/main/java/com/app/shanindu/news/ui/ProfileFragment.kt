@@ -1,4 +1,4 @@
-package com.app.shanindu.news.fragment
+package com.app.shanindu.news.ui
 
 
 import android.os.Bundle
@@ -11,7 +11,6 @@ import android.widget.*
 import com.app.shanindu.news.R
 import com.app.shanindu.news.model.User
 import com.app.shanindu.news.model.UserDao
-import kotlinx.android.synthetic.*
 
 
 /**

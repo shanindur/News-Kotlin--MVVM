@@ -1,4 +1,4 @@
-package com.app.shanindu.news.activity
+package com.app.shanindu.news.ui
 
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import android.widget.TextView
-import android.widget.Toast
 import com.app.shanindu.news.R
 
 
@@ -20,11 +19,13 @@ class SplashActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         val txtVersion = findViewById<TextView>(R.id.txt_version)
+        val txtPowered = findViewById<TextView>(R.id.txt_powered)
 
         val manager = this.packageManager
         val info = manager.getPackageInfo(this.packageName, PackageManager.GET_ACTIVITIES)
 
         txtVersion.setText("Version " + info.versionName)
+        txtPowered.setText("Powered By Shanindu Rajapaksha")
 
 
         Handler().postDelayed(Runnable {

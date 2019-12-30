@@ -1,4 +1,4 @@
-package com.app.shanindu.news.fragment
+package com.app.shanindu.news.ui
 
 
 import android.content.Intent
@@ -20,10 +20,9 @@ import com.android.volley.VolleyError
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.app.shanindu.news.R
-import com.app.shanindu.news.activity.DetailActivity
 import com.app.shanindu.news.adapter.NewsAdapter
 import com.app.shanindu.news.helper.InternetObserver
-import com.app.shanindu.news.model.News
+import com.app.shanindu.news.model.Article
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import org.json.JSONException
@@ -39,7 +38,7 @@ class HomeFragment : Fragment() {
     private var recyclerView: RecyclerView? = null
     private var layoutManager: RecyclerView.LayoutManager? = null
     private var mAdapter: NewsAdapter? = null
-    private val newsList = ArrayList<News>()
+    private val newsList = ArrayList<Article>()
     private var lyt_progress: LinearLayout? = null
     private var lyt_connection: LinearLayout? = null
     @Volatile
@@ -89,16 +88,10 @@ class HomeFragment : Fragment() {
 
 
         mAdapter?.SetOnItemClickListener(object : NewsAdapter.OnItemClickListener {
-            override fun onItemClick(view: View, position: Int, obj: News) {
+            override fun onItemClick(view: View, position: Int, obj: Article) {
                 val intent = Intent(context, DetailActivity::class.java)
 
-                intent.putExtra("author", obj.author)
-                intent.putExtra("title", obj.title)
-                intent.putExtra("description", obj.description)
-                intent.putExtra("url", obj.url)
-                intent.putExtra("urlToImage", obj.urlToImage)
-                intent.putExtra("publishedAt", obj.publishedAt)
-                intent.putExtra("content", obj.content)
+                intent.putExtra("article", obj)
 
                 startActivity(intent)
 
@@ -130,11 +123,11 @@ class HomeFragment : Fragment() {
                             try {
 
                                 val jObj = JSONObject(response)
-                                val news: List<News>
+                                val news: List<Article>
 
-                                news = Gson().fromJson<List<News>>(
+                                news = Gson().fromJson<List<Article>>(
                                         jObj.getJSONArray("articles").toString(),
-                                        object : TypeToken<List<News>>() {
+                                        object : TypeToken<List<Article>>() {
 
                                         }.type
                                 )

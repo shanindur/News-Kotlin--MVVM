@@ -1,4 +1,4 @@
-package com.app.shanindu.news.activity
+package com.app.shanindu.news.ui
 
 import android.content.Intent
 import android.net.Uri
@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import com.app.shanindu.news.R
+import com.app.shanindu.news.model.Article
 import com.squareup.picasso.Picasso
 
 class DetailActivity : AppCompatActivity() {
@@ -36,20 +37,16 @@ class DetailActivity : AppCompatActivity() {
         actionbar.setDisplayHomeAsUpEnabled(true)
 
         var intent = intent
-        val author = intent.getStringExtra("author")
-        url = intent.getStringExtra("url")
-        val publishat = intent.getStringExtra("publishedAt")
-        val description = intent.getStringExtra("description")
-        val content = intent.getStringExtra("content")
-        val urlToImage = intent.getStringExtra("urlToImage")
+        val article = intent.getSerializableExtra("article") as? Article
+        url = article?.url
 
         initComponent()
 
-        Picasso.get().load(urlToImage).placeholder(R.drawable.placeholder).into(imgNews)
-        txtDescription?.setText(description)
-        txtContent?.setText(content)
-        txtAuthor?.setText("By " + author)
-        txtPublishAt?.setText("Published " + publishat)
+        Picasso.get().load(article?.urlToImage).placeholder(R.drawable.placeholder).into(imgNews)
+        txtDescription?.setText(article?.description)
+        txtContent?.setText(article?.content)
+        txtAuthor?.setText("By " + article?.author)
+        txtPublishAt?.setText("Published " + article?.publishedAt)
 
 
     }

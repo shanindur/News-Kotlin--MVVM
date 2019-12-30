@@ -1,4 +1,4 @@
-package com.app.shanindu.news.activity
+package com.app.shanindu.news.ui
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle

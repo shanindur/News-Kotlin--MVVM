@@ -8,12 +8,12 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.app.shanindu.news.R
-import com.app.shanindu.news.model.News
+import com.app.shanindu.news.model.Article
 import com.balysv.materialripple.MaterialRippleLayout
 import com.squareup.picasso.Picasso
 
 
-class NewsAdapter(val context: Context?, val newsList: List<News>) :
+class NewsAdapter(val context: Context?, val newsList: List<Article>) :
         RecyclerView.Adapter<NewsAdapter.MyViewHolder>() {
 
     private var mOnItemClickListener: OnItemClickListener? = null
@@ -23,7 +23,7 @@ class NewsAdapter(val context: Context?, val newsList: List<News>) :
     private var on_attach = true
 
     interface OnItemClickListener {
-        fun onItemClick(view: View, position: Int, obj: News)
+        fun onItemClick(view: View, position: Int, obj: Article)
     }
 
     fun SetOnItemClickListener(mItemClickListener: OnItemClickListener) {
